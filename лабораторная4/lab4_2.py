@@ -9,9 +9,7 @@ OUTPUT_FILENAME = "output.json"
 def task() -> None:
     with open(INPUT_FILENAME,'r') as input:
         table = DictReader(input, delimiter=',', quotechar='\n')
-        list_from_csv = []
-        for row in table:
-            list_from_csv.append(row)
+        list_from_csv = list(row for row in table)
 
     with open(OUTPUT_FILENAME, 'w') as output:
         dump(list_from_csv, output, indent=4)
